@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+/*Styling for Navbar*/
+#nav-list {
+margin: 0;
+padding: 0;
+right: 0;
+left: 0;
+z-index: 1030;
+list-style-type: none;
+overflow: hidden;
+background-color:#f1faee;
+position: fixed;
+bottom: 0;
+width: 390px;
+}
+#nav-list >li >a {
+  display: block;
+  text-align: center;
+  float:left;
+  padding:42px;
+}
+/*styling för projekt modalen*/
+.wrappAll {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.newProjectButton {
+  width: 90%;
+  padding: 5%; 
+  position: absolute;
+  bottom: 20%;
+  background-color: #A8DADC;
+  border: none;
+  font-size: x-large;
+  color: #1D3557;
+}
+.modalProject {
+  width: 90%;
+  padding: 4%; 
+  box-sizing:content-box;
+  margin-top: 100%;
+  background-color: #A8DADC;
+  border: none;
+  font-size: x-large;
+  color: #1D3557;
+}
+.projectInput {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #F1FAEE;
+  
+}
+.projectInput::placeholder{
+  color: gray;
+  font-size: large;
+  text-align: center;
+}
+.input1{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #F1FAEE;
+}
+.input2{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #F1FAEE;
+}
+.input1::placeholder{
+  color: gray;
+  font-size: large;
+  text-align: center;
+}
+.input2::placeholder{
+  color: gray;
+  font-size: large;
+  text-align: center;
+}
+.tasksButton{
+  width: 90%;
+  padding: 4%; 
+  box-sizing:content-box;
+  margin-top: 75%;
+  background-color: #A8DADC;
+  border: none;
+  font-size: x-large;
+  color: #1D3557;
+}
+.ant{
+  width: 85%;
+  padding: 5%; 
+  position: absolute;
+  bottom: 20%;
+  background-color: #A8DADC;
+  border: none;
+  font-size: x-large;
+  color: #1D3557;
+}
+.listOfTasks{
+  width: 350px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+}
+.listOfProjects{
+  width: 350px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
 }
