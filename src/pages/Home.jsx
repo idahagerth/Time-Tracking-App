@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 //import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import { Context } from "../AppRouter";
-//import { BlockPicker } from "react-color";
+import axios from "axios";
+import uuid from "react-uuid";
+import { findRenderedComponentWithType } from "react-dom/test-utils";
+
 
 function Home() {
   const contexts = useContext(Context);
@@ -42,20 +45,40 @@ function Home() {
     console.log(context);
   };
   
+  const getProjects = () => {
+    return axios.get("http://localhost:3000/projects").then(res => res.data)
+   };
+   
+   
+   const addTask = () => {
+    /*const id = getProjects().then(items => {
+     //items.find(x => x.name === projekt).id
+     return items.find(x => x.name === projekt).id
+    });*/
+    const tasksInfo = {
+      "id":uuid(),
+      "name":name,
+      "projectId": getProjects().then(items => {
+        /* project id funkar inte än*/
+        return items.find(x => x.name === projekt).id
+       })
+    }
 
-  const addTask = () => {
-    const taskObject = {
-      name: name,
-      color: blockPickerColor,
-      projekt: projekt,
-    };
-    console.log(context);
 
-    const id = context.findIndex((obj) => {
+    
+
+    axios.post("http://localhost:3000/tasks", tasksInfo)
+    .then(function(res) {
+      console.log("request okey");
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+    /*const id = context.findIndex((obj) => {
       return obj.name === projekt;
-    });
+    });*/
 
-    context[id].tasks.push(taskObject);
+    //context[id].tasks.push(taskObject);
 
     setName("");
     setProjekt("");

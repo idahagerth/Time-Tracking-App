@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 //import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import { Context } from "../AppRouter";
 import { BlockPicker } from "react-color";
-
-
+import axios from "axios"
+import uuid from "react-uuid";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 function Projects() {
   const context = useContext(Context);
@@ -23,30 +24,60 @@ function Projects() {
     setIsOpen(false);
   }
   const [name, setName] = useState("");
-  
-
   const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
+
+  
+  const getProjects = () => {
+   return axios.get("http://localhost:3000/projects").then(res => res.data)
+  };
+
 
   const addProject = () => {
     
-    const infoArray = {
-      name: name,
-      color: blockPickerColor,
-      tasks: [],
-    };
-    context.push(infoArray);
+    const serverInfo = {
+      "id":uuid(),
+      "name":name,
+      "color": blockPickerColor
+    }
+    axios.post("http://localhost:3000/projects", serverInfo)
+    .then(function(res) {
+      console.log("request okey");
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
     setName("");
     setIsOpen(false);
   };
-  
+   const deleteProject = (id) => {
+    return axios.delete(`http://localhost:3000/projects/${id}`).then(res => res.data)
+   } 
 
+
+
+  const [projectList, setProjectList] = useState([])
+  useEffect(() => {
+    let mounted = true; 
+    getProjects()
+    .then(items => {
+      if(mounted) {
+        setProjectList(items)
+      }
+    })
+    return () => mounted = false; 
+
+  })
+
+  
   return (
     <div className="wrappAll">
-      {context.map((project) => {
+      {projectList.map((project) => {
         if (project.length === 0) return;
         return (
-          <div className="listOfProjects" style={{backgroundColor: project.color}}>
+          <div key={project.id} className="listOfProjects" style={{backgroundColor: project.color}}>
             <p>{project.name}</p>
+            <a onClick={() => deleteProject(project.id)}><AiTwotoneDelete size={28}/></a>
           </div>
         );
       })}
