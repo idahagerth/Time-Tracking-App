@@ -4,8 +4,7 @@ import Modal from "react-modal";
 import { Context } from "../AppRouter";
 import axios from "axios";
 import uuid from "react-uuid";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
-
+import { AiTwotoneDelete } from "react-icons/ai";
 
 function Home() {
   const contexts = useContext(Context);
@@ -15,6 +14,7 @@ function Home() {
       border: "none",
     },
   };
+  const [deleteStatus, setDeleteStatus] = useState(null);
 
   let modelTitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -27,87 +27,80 @@ function Home() {
   }
   const [name, setName] = useState("");
   const [projekt, setProjekt] = useState("");
-
-  const deleteTasks = (e, f) => {
-    const id = context.findIndex((obj) => {
-      return obj.name === f;
-    });
-    const task = context[id].tasks.findIndex((obj) => {
-      return obj.name === e;
-    });
-
-    
-    let newcontext = context
-    newcontext[id].tasks.splice(task,1)
-    setContext(context => newcontext)
-    
-
-    console.log(context);
-  };
   
-  const getProjects = () => {
-    return axios.get("http://localhost:3000/projects").then(res => res.data)
-   };
-   
-   
-   const addTask = () => {
-    /*const id = getProjects().then(items => {
-     //items.find(x => x.name === projekt).id
-     return items.find(x => x.name === projekt).id
-    });*/
+  const deleteTasks = (id) => {
+    return axios.delete(`http://localhost:3000/tasks/${id}`).then(() => setDeleteStatus('Delete Successful' + uuid()))
+   } 
+
+  
+  
+  const addTask = async () => {
+
+    const getProjectId = async () => {
+      return axios
+        .get(`http://localhost:3000/projects?name=${projekt}`)
+        .then((response) => response.data[0].id);
+    };
+    const getProjectColor = async () => {
+      return axios
+        .get(`http://localhost:3000/projects?name=${projekt}`)
+        .then((response) => response.data[0].color);
+    };
+
     const tasksInfo = {
-      "id":uuid(),
-      "name":name,
-      "projectId": getProjects().then(items => {
-        /* project id funkar inte än*/
-        return items.find(x => x.name === projekt).id
-       })
-    }
+      id: uuid(),
+      name: name,
+      projectId: await getProjectId(),
+      projectColor: await getProjectColor(),
+    };
 
-
-    
-
-    axios.post("http://localhost:3000/tasks", tasksInfo)
-    .then(function(res) {
-      console.log("request okey");
-    })
-    .catch(function(error){
-      console.log(error);
-    })
-    /*const id = context.findIndex((obj) => {
-      return obj.name === projekt;
-    });*/
-
-    //context[id].tasks.push(taskObject);
+    axios
+      .post("http://localhost:3000/tasks", tasksInfo)
+      .then(function (res) {
+        console.log("request okey");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     setName("");
     setProjekt("");
     setIsOpen(false);
   };
-  const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
+  //const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
+
+  const getTasks = () => {
+    return axios.get("http://localhost:3000/tasks").then((res) => res.data);
+  };
+
+  const [taskList, setTaskList] = useState([]);
+  useEffect(() => {
+    console.log("Running tasks");
+    let mounted1 = true;
+
+    getTasks().then((items1) => {
+      if (mounted1) {
+        setTaskList(items1);
+      }
+    });
+    return () => (mounted1 = false);
+  }, [modalIsOpen, deleteStatus]);
 
   return (
     <div className="wrappAll">
-      {Array.isArray(context) ? context.map((projekt) => {
-        if (projekt.length === 0) return;
+      {taskList.map((task) => {
         return (
-          <div>
-            {projekt.tasks.map((task) => {
-              return (
-                <div
-                  className="listOfTasks"
-                  style={{ backgroundColor: projekt.color }}
-                >
-                  <p>{task.name}</p>
-                  <button
-                    onClick={() => deleteTasks(task.name, projekt.name)}
-                  ></button>
-                </div>
-              );
-            })}
+          <div
+            key={task.id}
+            className="listOfTasks"
+            style={{ backgroundColor: task.projectColor }}
+          >
+            <p>{task.name}</p>
+            <a
+              onClick={() => deleteTasks(task.id)}><AiTwotoneDelete  size={28}/></a>
           </div>
         );
-      }) : null}
+      })}
 
       <button className="ant" onClick={openModal}>
         Add New Tasks

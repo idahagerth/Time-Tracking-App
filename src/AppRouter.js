@@ -17,7 +17,7 @@ function AppRouter() {
     <Context.Provider value={[context]}>
       <Routes>
         <Route path="calendar" element={<Calendar />} />
-        <Route path="/" element={<ReactTabs />} />
+        <Route path="home" element={<ReactTabs />} />
         <Route path="timekeeping" element={<TimeKeeping />} />
       </Routes>
     </Context.Provider>

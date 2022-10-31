@@ -10,6 +10,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 function Projects() {
   const context = useContext(Context);
   let modelTitle;
+  const [deleteStatus, setDeleteStatus] = useState(null);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
@@ -51,23 +52,23 @@ function Projects() {
     setIsOpen(false);
   };
    const deleteProject = (id) => {
-    return axios.delete(`http://localhost:3000/projects/${id}`).then(res => res.data)
+    return axios.delete(`http://localhost:3000/projects/${id}`).then(() => setDeleteStatus('Delete Successful' + uuid()))
    } 
 
 
 
   const [projectList, setProjectList] = useState([])
   useEffect(() => {
-    let mounted = true; 
+    let mounted2 = true; 
     getProjects()
-    .then(items => {
-      if(mounted) {
-        setProjectList(items)
+    .then(items2 => {
+      if(mounted2) {
+        setProjectList(items2)
       }
     })
-    return () => mounted = false; 
+    return () => mounted2 = false; 
 
-  })
+  }, [modalIsOpen, deleteStatus])
 
   
   return (

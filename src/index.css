@@ -113,6 +113,8 @@ width: 390px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
+  display: flex;
+  justify-content: space-between;
 }
 .listOfProjects{
   width: 350px;

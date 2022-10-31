@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AppRouter from "./AppRouter";
 import "./index.css";
 import { FcClock } from "react-icons/fc";
@@ -11,20 +11,26 @@ function App() {
     <div>
       <ul id="nav-list">
         <li>
-          <Link to="/calendar">
+          <NavLink to="/calendar" style={({ isActive }) => 
+                      (isActive ? {borderBottom: ' 10px solid #A8DADC'} : {border: "none"})}
+>
             <FcCalendar size={42} />
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/timekeeping">
+          <NavLink to="/timekeeping" style={({ isActive }) => 
+                      (isActive ? {borderBottom: ' 10px solid #A8DADC'} : {border: "none"})}
+>
             <FcClock size={42} />
-          </Link>
+          </NavLink>
         </li>
 
         <li>
-          <Link to="/">
+          <NavLink to="/home" style={({ isActive }) => 
+                      (isActive ? {borderBottom: ' 10px solid #A8DADC'} : {border: "none"})}
+>
             <FcTodoList size={42} />
-          </Link>
+          </NavLink>
         </li>
       </ul>
       <AppRouter />
