@@ -1,51 +1,54 @@
-
-/*Styling for Navbar*/
 #nav-list {
-margin: 0;
-padding: 0;
-right: 0;
-left: 0;
-z-index: 1030;
-list-style-type: none;
-overflow: hidden;
-background-color:#f1faee;
-position: fixed;
-bottom: 0;
-width: 390px;
+  margin: 0;
+  padding: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #f1faee;
+  position: fixed;
+  bottom: 0;
+  width: 390px;
+  font-family: "Ramabhadra", sans-serif;
 }
-#nav-list >li >a {
+#nav-list > li > a {
   display: block;
   text-align: center;
-  float:left;
-  padding:42px;
+  float: left;
+  padding: 42px;
+  font-family: "Ramabhadra", sans-serif;
 }
-/*styling för projekt modalen*/
+
 .wrappAll {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  font-family: "Ramabhadra", sans-serif;
 }
 
 .newProjectButton {
   width: 90%;
-  padding: 5%; 
+  padding: 5%;
   position: absolute;
   bottom: 20%;
-  background-color: #A8DADC;
+  background-color: #a8dadc;
   border: none;
   font-size: x-large;
-  color: #1D3557;
+  color: #1d3557;
+  font-family: "Ramabhadra", sans-serif;
 }
 .modalProject {
   width: 90%;
-  padding: 4%; 
-  box-sizing:content-box;
+  padding: 4%;
+  box-sizing: content-box;
   margin-top: 100%;
-  background-color: #A8DADC;
+  background-color: #a8dadc;
   border: none;
   font-size: x-large;
-  color: #1D3557;
+  color: #1d3557;
+  font-family: "Ramabhadra", sans-serif;
 }
 .projectInput {
   width: 100%;
@@ -53,61 +56,68 @@ width: 390px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color: #F1FAEE;
-  
+  background-color: #f1faee;
+  font-family: "Ramabhadra", sans-serif;
 }
-.projectInput::placeholder{
+.projectInput::placeholder {
   color: gray;
   font-size: large;
   text-align: center;
+  font-family: "Ramabhadra", sans-serif;
 }
-.input1{
+.input1 {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color: #F1FAEE;
+  background-color: #f1faee;
+  font-family: "Ramabhadra", sans-serif;
 }
-.input2{
+.input2 {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color: #F1FAEE;
+  background-color: #f1faee;
+  font-family: "Ramabhadra", sans-serif;
 }
-.input1::placeholder{
+.input1::placeholder {
   color: gray;
   font-size: large;
   text-align: center;
+  font-family: "Ramabhadra", sans-serif;
 }
-.input2::placeholder{
+.input2::placeholder {
   color: gray;
   font-size: large;
   text-align: center;
+  font-family: "Ramabhadra", sans-serif;
 }
-.tasksButton{
+.tasksButton {
   width: 90%;
-  padding: 4%; 
-  box-sizing:content-box;
+  padding: 4%;
+  box-sizing: content-box;
   margin-top: 75%;
-  background-color: #A8DADC;
+  background-color: #a8dadc;
   border: none;
   font-size: x-large;
-  color: #1D3557;
+  color: #1d3557;
+  font-family: "Ramabhadra", sans-serif;
 }
-.ant{
+.ant {
   width: 85%;
-  padding: 5%; 
+  padding: 5%;
   position: absolute;
   bottom: 20%;
-  background-color: #A8DADC;
+  background-color: #a8dadc;
   border: none;
   font-size: x-large;
-  color: #1D3557;
+  color: #1d3557;
+  font-family: "Ramabhadra", sans-serif;
 }
-.listOfTasks{
+.listOfTasks {
   width: 350px;
   padding: 10px 20px;
   margin: 8px 0;
@@ -115,8 +125,10 @@ width: 390px;
   border: none;
   display: flex;
   justify-content: space-between;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: x-large;
 }
-.listOfProjects{
+.listOfProjects {
   width: 350px;
   padding: 10px 20px;
   margin: 8px 0;
@@ -124,4 +136,72 @@ width: 390px;
   border: none;
   display: flex;
   justify-content: space-between;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: x-large;
+}
+.newTimerButton {
+  width: 90%;
+  padding: 5%;
+  margin-left: 20px;
+  position: absolute;
+  bottom: 20%;
+  background-color: #a8dadc;
+  border: none;
+  font-size: x-large;
+  color: #1d3557;
+  font-family: "Ramabhadra", sans-serif;
+}
+.timeList {
+  width: 350px;
+  padding: 10px 20px;
+  margin: 80px 0;
+  margin-left: 20px;
+  box-sizing: border-box;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: x-large;
+}
+.timerDisplay {
+  text-align: center;
+  font-family: "Ramabhadra", sans-serif;
+}
+.itemsFromLists {
+  width: 270px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: x-large;
+}
+.headerTime {
+  text-align: center;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: xx-large;
+  color: #1d3557;
+  padding: 30px;
+  background-color: #f1faee;
+}
+.calHeader {
+  text-align: center;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: xx-large;
+  color: #1d3557;
+  padding: 30px;
+  background-color: #f1faee;
+}
+.calendarStyling {
+  width: 390px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Ramabhadra", sans-serif;
+  font-size: x-large;
 }

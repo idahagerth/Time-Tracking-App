@@ -1,14 +1,30 @@
-import React from "react";
+import { createContext, useContext, useState } from "react";
 
-/*
-{
-    Name:name,
-    project: text,
-    color: [taskName:name,color:colorCode,timer:int]
+export const AppContext = createContext();
+
+export function AppProvider({ children }) {
+  const [timerList, setTimerList] = useState([]);
+  const [deleteStatus, setDeleteStatus] = useState(null);
+  const [projectId, setProjectId] = useState([]);
+
+  return (
+    <AppContext.Provider
+      value={{
+        timerList,
+        setTimerList,
+        deleteStatus,
+        setDeleteStatus,
+        projectId,
+        setProjectId,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 }
-*/
-const Context = React.createContext([]);
 
+export function useAppContext() {
+  const context = useContext(AppContext);
 
-
-export default Context;
+  return context;
+}

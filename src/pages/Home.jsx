@@ -1,20 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
-//import ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import { Context } from "../AppRouter";
+import { useAppContext } from "../Context";
 import axios from "axios";
 import uuid from "react-uuid";
 import { AiTwotoneDelete } from "react-icons/ai";
 
 function Home() {
-  const contexts = useContext(Context);
-  const [context, setContext] = useState(contexts);
+  const { deleteStatus, setDeleteStatus } = useAppContext();
+
   const customStyles = {
     content: {
       border: "none",
     },
   };
-  const [deleteStatus, setDeleteStatus] = useState(null);
 
   let modelTitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -27,15 +25,14 @@ function Home() {
   }
   const [name, setName] = useState("");
   const [projekt, setProjekt] = useState("");
-  
+
   const deleteTasks = (id) => {
-    return axios.delete(`http://localhost:3000/tasks/${id}`).then(() => setDeleteStatus('Delete Successful' + uuid()))
-   } 
+    return axios
+      .delete(`http://localhost:3000/tasks/${id}`)
+      .then(() => setDeleteStatus("Delete Successful" + uuid()));
+  };
 
-  
-  
   const addTask = async () => {
-
     const getProjectId = async () => {
       return axios
         .get(`http://localhost:3000/projects?name=${projekt}`)
@@ -67,7 +64,6 @@ function Home() {
     setProjekt("");
     setIsOpen(false);
   };
-  //const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
 
   const getTasks = () => {
     return axios.get("http://localhost:3000/tasks").then((res) => res.data);
@@ -96,8 +92,9 @@ function Home() {
             style={{ backgroundColor: task.projectColor }}
           >
             <p>{task.name}</p>
-            <a
-              onClick={() => deleteTasks(task.id)}><AiTwotoneDelete  size={28}/></a>
+            <a onClick={() => deleteTasks(task.id)}>
+              <AiTwotoneDelete size={28} />
+            </a>
           </div>
         );
       })}
