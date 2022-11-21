@@ -35,6 +35,7 @@ function Projects() {
       id: uuid(),
       name: name,
       color: blockPickerColor,
+      hourly_rate:0
     };
     axios
       .post("http://localhost:3000/projects", serverInfo)
